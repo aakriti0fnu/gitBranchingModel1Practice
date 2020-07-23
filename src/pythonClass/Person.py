@@ -11,7 +11,7 @@ class Person:
 
         :return: the object representation
         '''
-        return {'name':self.name, 'age':self.age}
+        return "{'name':self.name, 'age':self.age}"
 
     def __str__(self):
         '''

@@ -4,10 +4,16 @@ from datetime import datetime, timezone
 import functools
 
 def timeit(method):
+    '''
+
+    :param method: any python function you wanted to be timed!
+    :return: function name  followed by execution time in hh:mm:ss format!
+    '''
     def timed(*args, **kw):
         ts = time.time()
         result = method(*args, **kw)
         te = time.time()
+        # for logging time!
         if 'log_time' in kw:
             name = kw.get('log_name', method.__name__.upper())
             kw['log_time'][name] = time.strftime("%H:%M:%S" , time.gmtime((te - ts)))
@@ -19,12 +25,26 @@ def timeit(method):
     return timed
 
 def current_local_datetime():
+    '''
+
+    :return: local datetime
+    '''
     return datetime.now()
 
 def current_UTC_datetime():
+    '''
+
+    :return: datetime in UTC
+    '''
     return datetime.now(timezone.utc)
 
 def str2bool(v):
+    '''
+    Used for accepting arguments from commandline
+    Giving user more flexibiity!
+    :param v:
+    :return:
+    '''
     if isinstance(v, bool):
        return v
     if v.lower() in ('yes', 'true', 't', 'y', '1'):
@@ -35,7 +55,11 @@ def str2bool(v):
         raise argparse.ArgumentTypeError("Boolean value expected. ['yes', 'true', 't', 'y', '1', 'no', 'false', 'f', 'n', '0']" )
 
 def debug(func):
-    """Print the function signature and return value"""
+    '''
+    Print the function signature and return value
+    :param func:
+    :return:
+    '''
     @functools.wraps(func)
     def wrapper_debug(*args, **kwargs):
         args_repr = [repr(a) for a in args]                      # 1

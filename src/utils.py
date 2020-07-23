@@ -16,3 +16,6 @@ def timeit(method):
             print("{} took {}.".format(method.__name__,time.strftime("%H:%M:%S" , time.gmtime((te - ts))) ))
         return result
     return timed
+
+def current_local_datetime():
+    return datetime.now()

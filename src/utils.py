@@ -19,3 +19,6 @@ def timeit(method):
 
 def current_local_datetime():
     return datetime.now()
+
+def current_UTC_datetime():
+    return datetime.now(timezone.utc)
